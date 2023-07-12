@@ -5,5 +5,5 @@ import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [viteCommonjs(), react()],
-  // base: "/Notes-App/",
+  base: "/app-notes",
 });
