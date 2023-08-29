@@ -1,23 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/image/pngwing.com.png";
 
 // Library npm >>>>
 import * as AiIcons from "react-icons/ai";
 import * as HiIcons from "react-icons/hi";
 
-// react redux >>>>
-// import { useDispatch, useSelector } from "react-redux";
-
-// All store to slice redux toolkit >>>>
-// import { hiddenButton } from "../../features/Menu/MenuSlice";
-// import { useState } from "react";
-
 const Sidebar = ({ burger, setBurger }) => {
-  // const dispatch = useDispatch();
-
-  // Styling Value
-  // const isValueButtonBurger = useSelector((state) => state.menu.burger);
-
   // handle hidden buttons
   const handleHiddenButton = () => {
     setBurger(false);
@@ -27,11 +16,7 @@ const Sidebar = ({ burger, setBurger }) => {
     <div className={burger ? "sidebar-aktif" : "sidebar"}>
       {/* Header sidebar */}
       <div className="header-sidebar">
-        <img
-          src={require("../../assets/image/pngwing.com.png")}
-          className="logo-header-sidebar"
-          alt=""
-        />
+        <img src={logo} className="logo-header-sidebar" alt="" />
         <h3 className="title-header-sidebar">Notes Me</h3>
 
         <HiIcons.HiMenuAlt1

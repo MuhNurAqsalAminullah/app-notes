@@ -8,8 +8,6 @@ import * as AiIcons from "react-icons/ai";
 // react redux >>>>
 import { useDispatch, useSelector } from "react-redux";
 
-// All store to slice redux toolkit >>>>
-// import { showButton } from "../../features/Menu/MenuSlice";
 import {
   fetchNotesAsync,
   searchNotesAsync,

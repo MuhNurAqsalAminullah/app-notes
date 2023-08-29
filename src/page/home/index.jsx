@@ -55,12 +55,6 @@ const Home = ({ setBurger }) => {
           <RiIcons.RiListCheck2 className="icon-pin-notes" />
           <p className="title-pin-notes">All Notes List</p>
         </div>
-        {/* <ul className="small-navbar">
-          <li className="item-small-navbar">Semua</li>
-          <li className="item-small-navbar">Projek</li>
-          <li className="item-small-navbar">Personal</li>
-          <li className="item-small-navbar">Konten</li>
-        </ul> */}
 
         {notes && (
           <div className="box-content-notes">
@@ -89,7 +83,6 @@ const Home = ({ setBurger }) => {
                       onClick={() => handleDetail(item.id)}
                     >
                       <TruncateMarkup lines={2}>
-                        {/* <h5 className="title-notes">{item.attributes.title}</h5> */}
                         <h5 className="title-notes">{item.title}</h5>
                       </TruncateMarkup>
                       <TruncateMarkup lines={10}>

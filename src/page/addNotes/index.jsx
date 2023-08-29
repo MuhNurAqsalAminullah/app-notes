@@ -1,4 +1,6 @@
 import React, { useState, Fragment } from "react";
+import { useNavigate } from "react-router-dom";
+import { createNotesAsync } from "../../features/fetchData/fetchDataSlice";
 
 // Library npm >>>>
 import * as AiIcons from "react-icons/ai";
@@ -6,11 +8,6 @@ import * as HiIcons from "react-icons/hi";
 
 // react redux >>>>
 import { useDispatch } from "react-redux";
-
-// All store to slice redux toolkit >>>>
-// import { showButton } from "../../features/Menu/MenuSlice";
-import { createNotesAsync } from "../../features/fetchData/fetchDataSlice";
-import { useNavigate } from "react-router-dom";
 
 const AddNotes = ({ setBurger }) => {
   const dispatch = useDispatch();
