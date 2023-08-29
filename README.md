@@ -8,3 +8,7 @@ Jalankan App ini dalam mode development.
 Di direktori projek, anda dapat menjalankan:
 
 ### `npm run dev`
+
+## Link Online  App Notes
+
+https://notes-app-steel-alpha.vercel.app/
