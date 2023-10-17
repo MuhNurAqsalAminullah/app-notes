@@ -29,8 +29,6 @@ const Home = ({ setBurger }) => {
   const status = useSelector((state) => state.fetchData.status);
   const error = useSelector((state) => state.fetchData.error);
 
-  // const searchResults = useSelector((state) => state.fetchData.list);
-
   // Get data list notes >>>>
   useEffect(() => {
     dispatch(fetchNotesAsync());
@@ -66,7 +64,6 @@ const Home = ({ setBurger }) => {
                   <div className="card-notes">
                     <div className="box-tgl-notes">
                       <p className="tgl-notes">
-                        {/* {moment(item.attributes.createdAt).format("LL")} */}
                         {moment(item.createdAt).format("LL")}
                       </p>
                       <div className="box-icon-notes">
@@ -83,7 +80,7 @@ const Home = ({ setBurger }) => {
                       onClick={() => handleDetail(item.id)}
                     >
                       <TruncateMarkup lines={2}>
-                        <h5 className="title-notes">{item.title}</h5>
+                        <h5 className="title-notes">{item.name}</h5>
                       </TruncateMarkup>
                       <TruncateMarkup lines={10}>
                         <p className="text-notes">{item.deskripsi}</p>

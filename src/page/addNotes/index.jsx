@@ -1,6 +1,4 @@
 import React, { useState, Fragment } from "react";
-import { useNavigate } from "react-router-dom";
-import { createNotesAsync } from "../../features/fetchData/fetchDataSlice";
 
 // Library npm >>>>
 import * as AiIcons from "react-icons/ai";
@@ -9,10 +7,14 @@ import * as HiIcons from "react-icons/hi";
 // react redux >>>>
 import { useDispatch } from "react-redux";
 
+// All store to slice redux toolkit >>>>
+import { createNotesAsync } from "../../features/fetchData/fetchDataSlice";
+import { useNavigate } from "react-router-dom";
+
 const AddNotes = ({ setBurger }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
 
   // handle add notes
@@ -20,16 +22,15 @@ const AddNotes = ({ setBurger }) => {
     e.preventDefault();
 
     const notesData = {
-      title,
+      name,
       deskripsi,
     };
 
     dispatch(createNotesAsync(notesData));
     alert("Notes added Successfully");
     navigate("/");
-    // window.location.reload();
 
-    setTitle("");
+    setName("");
     setDeskripsi("");
   };
 
@@ -61,7 +62,7 @@ const AddNotes = ({ setBurger }) => {
                 <br />
                 <input
                   type="text"
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Masukkan judul..."
                   className="form-title-add-notes"
                 />

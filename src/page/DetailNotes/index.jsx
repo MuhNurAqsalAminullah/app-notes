@@ -22,7 +22,7 @@ const DetailNotes = () => {
 
   const note = useSelector((state) => state.fetchData.note);
 
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
 
   useEffect(() => {
@@ -31,12 +31,8 @@ const DetailNotes = () => {
 
   useEffect(() => {
     if (note) {
-      // setTitle(note.attributes.title);
-      // setDeskripsi(note.attributes.deskripsi);
-      setTitle(note.title);
+      setName(note.name);
       setDeskripsi(note.deskripsi);
-      // console.log(note.attributes.title);
-      // console.log(note.attributes.deskripsi);
     }
   }, [note]);
 
@@ -45,18 +41,18 @@ const DetailNotes = () => {
 
     const updatedNote = {
       id,
-      title,
+      name,
       deskripsi,
     };
 
     dispatch(updateNotesAsync(updatedNote));
     navigate("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
 
-    setTitle("");
+    setName("");
     setDeskripsi("");
-
-    // console.log(title);
-    // console.log(deskripsi);
   };
 
   return (
@@ -71,10 +67,6 @@ const DetailNotes = () => {
             />
           </Link>
           <div className="box-btn-action-notes">
-            {/* <button className="box-navbar-edit-notes">
-              <BiIcons.BiEdit className="icon-pin-notes" />
-              <p className="edit-title-notes">Edit</p>
-            </button> */}
             <button type="submit" className="box-navbar-edit-notes">
               <BiIcons.BiEdit className="icon-pin-notes" />
               <p className="edit-title-notes">Simpan</p>
@@ -92,8 +84,8 @@ const DetailNotes = () => {
             <input
               type="text"
               className="title-notes-deskripsi"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <textarea
               className="detail-deskripsi"

@@ -1,8 +1,9 @@
 import axios from "axios";
 
 // Pakai Strapi >>>>
-// const API_BASE_URL = "http://localhost:1337/api/notes";
-const API_BASE_URL = "https://64ad31a3b470006a5ec58334.mockapi.io/notes";
+// const API_BASE_URL = "http://localhost:1337/api/notes"; // local url
+// const API_BASE_URL = "https://64ad31a3b470006a5ec58334.mockapi.io/notes"; // use mockapi.io data
+const API_BASE_URL = "https://api-notes-six.vercel.app/notes"; //use my backend
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -11,29 +12,29 @@ const api = axios.create({
 // Get All Notes Data >>>>
 export const fetchNotes = async () => {
   const response = await api.get("/");
-  // const data = response.data;
-  // console.log(data.data);
-  // return data.data;
-  console.log(response.data);
-  return response.data;
+  const data = response.data;
+  console.log(data.data);
+  return data.data;
+  // console.log(response.data);
+  // return response.data;
 };
 
 export const searchNotes = async (keyword) => {
   const response = await api.get(`?search=${keyword}`);
-  // const data = response.data;
-  // console.log(data.data);
-  // return data.data;
-  console.log(response.data);
-  return response.data;
+  const data = response.data;
+  console.log(data.data);
+  return data.data;
+  // console.log(response.data);
+  // return response.data;
 };
 
 export const fetchNoteById = async (id) => {
   const response = await api.get(`/${id}`);
-  // const data = response.data;
-  // console.log(data.data);
-  // return data.data;
-  console.log(response.data);
-  return response.data;
+  const data = response.data;
+  console.log(data.data);
+  return data.data;
+  // console.log(response.data);
+  // return response.data;
 };
 
 // Create a new Notes Data >>>>
