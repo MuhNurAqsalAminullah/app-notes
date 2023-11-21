@@ -11,4 +11,4 @@ Di direktori projek, anda dapat menjalankan:
 
 ## Link Online  App Notes
 
-https://notes-app-steel-alpha.vercel.app/
+https://app-note-prod.netlify.app/
