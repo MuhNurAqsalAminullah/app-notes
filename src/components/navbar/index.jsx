@@ -8,10 +8,8 @@ import * as AiIcons from "react-icons/ai";
 // react redux >>>>
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchNotesAsync,
-  searchNotesAsync,
-} from "../../features/fetchData/fetchDataSlice";
+// All store to slice redux toolkit >>>>
+import { fetchNotesAsync } from "../../features/fetchData/fetchDataSlice";
 
 const Navbar = ({ setBurger }) => {
   const dispatch = useDispatch();

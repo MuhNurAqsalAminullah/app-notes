@@ -16,17 +16,21 @@ import {
 
 const DetailNotes = () => {
   const { id } = useParams();
-  // const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const note = useSelector((state) => state.fetchData.note);
+  const status = useSelector((state) => state.fetchData.status);
+  const error = useSelector((state) => state.fetchData.error);
 
   const [name, setName] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
 
   useEffect(() => {
     dispatch(fetchNoteByIdAsync(id));
+
+    setName(name || "");
+    setDeskripsi(deskripsi || "");
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -80,19 +84,24 @@ const DetailNotes = () => {
             <p className="title-pin-notes">Detail notes</p>
           </div>
 
-          <div className="box-content-detail">
-            <input
-              type="text"
-              className="title-notes-deskripsi"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <textarea
-              className="detail-deskripsi"
-              value={deskripsi}
-              onChange={(e) => setDeskripsi(e.target.value)}
-            ></textarea>
-          </div>
+          {status === "loading" && <div>Loading...</div>}
+          {status === "failed" && <div>Error: {error}</div>}
+
+          {status === "success" && (
+            <div className="box-content-detail">
+              <input
+                type="text"
+                className="title-notes-deskripsi"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <textarea
+                className="detail-deskripsi"
+                value={deskripsi}
+                onChange={(e) => setDeskripsi(e.target.value)}
+              ></textarea>
+            </div>
+          )}
         </div>
       </form>
     </Fragment>

@@ -1,64 +1,79 @@
-import axios from "axios";
-
-// Pakai Strapi >>>>
-// const API_BASE_URL = "http://localhost:1337/api/notes"; // local url
-// const API_BASE_URL = "https://64ad31a3b470006a5ec58334.mockapi.io/notes"; // use mockapi.io data
-const API_BASE_URL = "https://api-notes-six.vercel.app/notes"; //use my backend
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
-});
+import supabase from "../config/supabaseClient";
 
 // Get All Notes Data >>>>
 export const fetchNotes = async () => {
-  const response = await api.get("/");
-  const data = response.data;
-  console.log(data.data);
-  return data.data;
-  // console.log(response.data);
-  // return response.data;
+  const { data, error } = await supabase.from("list notes").select();
+
+  if (error) {
+    throw error;
+  }
+
+  console.log(data);
+  return data;
 };
 
-export const searchNotes = async (keyword) => {
-  const response = await api.get(`?search=${keyword}`);
-  const data = response.data;
-  console.log(data.data);
-  return data.data;
-  // console.log(response.data);
-  // return response.data;
-};
-
+// Get One Notes Data >>>>
 export const fetchNoteById = async (id) => {
-  const response = await api.get(`/${id}`);
-  const data = response.data;
-  console.log(data.data);
-  return data.data;
-  // console.log(response.data);
-  // return response.data;
+  const { data, error } = await supabase
+    .from("list notes")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  console.log(data);
+  return data;
 };
 
 // Create a new Notes Data >>>>
-export const createNotes = async (note) => {
-  // const response = await api.post("/", {
-  //   data: note,
-  // });
-  const response = await api.post("/", note);
-  return response.data;
+export const createNotes = async (name, deskripsi) => {
+  const { data, error } = await supabase
+    .from("list notes")
+    .insert([{ name: name, deskripsi: deskripsi }]);
+
+  if (error) {
+    throw error;
+  }
+
+  return data[0];
+};
+
+// Update One data in Notes Data >>>>
+export const updateNotes = async (id, name, deskripsi) => {
+  const { data, error } = await supabase
+    .from("list notes")
+    .update({ name: name, deskripsi: deskripsi })
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    throw error;
+  }
+
+  if (data) {
+    console.log(data);
+    return data;
+  }
 };
 
 // Delete One a Notes Data >>>>
 export const deleteNotes = async (id) => {
-  const response = await api.delete(`/${id}`);
-  // const data = response.data;
-  // return data.data;
-  return response.data;
-};
+  const { data, error } = await supabase
+    .from("list notes")
+    .delete()
+    .eq("id", id)
+    .select();
 
-// Update One data in Notes Data >>>>
-export const updateNotes = async (id, note) => {
-  // const response = await api.put(`/${id}`, {
-  //   data: note,
-  // });
-  const response = await api.put(`/${id}`, note);
-  return response.data;
+  if (error) {
+    throw error;
+  }
+
+  if (data) {
+    console.log(data);
+  }
+
+  return id;
 };

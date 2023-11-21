@@ -64,7 +64,7 @@ const Home = ({ setBurger }) => {
                   <div className="card-notes">
                     <div className="box-tgl-notes">
                       <p className="tgl-notes">
-                        {moment(item.createdAt).format("LL")}
+                        {moment(item.created_at).format("LL")}
                       </p>
                       <div className="box-icon-notes">
                         <AiIcons.AiFillPushpin className="icon-pin-notes" />

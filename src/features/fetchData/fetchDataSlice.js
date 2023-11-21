@@ -5,61 +5,43 @@ import {
   deleteNotes,
   updateNotes,
   fetchNoteById,
-  searchNotes,
 } from "../../api";
 
+// Redux toolkit thunk >>>>
 export const fetchNotesAsync = createAsyncThunk(
   "notes/fetchNotes",
   async () => {
-    const notes = await fetchNotes();
-    return notes;
-  }
-);
-
-export const searchNotesAsync = createAsyncThunk(
-  "users/searchNotes",
-  async (keyword) => {
-    const Notes = await searchNotes(keyword);
-    return Notes;
+    return fetchNotes();
   }
 );
 
 export const createNotesAsync = createAsyncThunk(
   "notes/createNotes",
-  async (note) => {
-    const newNotes = await createNotes(note);
-    return newNotes;
+  async ({ name, deskripsi }) => {
+    return createNotes(name, deskripsi);
   }
 );
 
 export const deleteNotesAsync = createAsyncThunk(
   "notes/deleteNotes",
   async (id) => {
-    await deleteNotes(id);
-    return id;
+    return deleteNotes(id);
   }
 );
 
 export const updateNotesAsync = createAsyncThunk(
   "notes/updateNotes",
-  async (note) => {
-    const response = await updateNotes(note.id, note);
-    return response.data;
+  async ({ id, name, deskripsi }) => {
+    return updateNotes(id, name, deskripsi);
   }
 );
 
 export const fetchNoteByIdAsync = createAsyncThunk(
   "notes/fetchNoteById",
   async (id) => {
-    const note = await fetchNoteById(id);
-    return note;
+    return fetchNoteById(id);
   }
 );
-
-// export const selectNoteById = (state, id) => {
-//   console.log(state.fetchData.list.find((note) => note.id === id));
-//   return state.fetchData.list.find((note) => note.id === id);
-// };
 
 const fetchDataSlice = createSlice({
   name: "notes",
@@ -82,10 +64,6 @@ const fetchDataSlice = createSlice({
       .addCase(fetchNotesAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      })
-      .addCase(searchNotesAsync.fulfilled, (state, action) => {
-        state.status = "success";
-        state.list = action.payload;
       })
       .addCase(createNotesAsync.pending, (state) => {
         state.status = "loading";
